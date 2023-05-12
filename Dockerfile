@@ -1,5 +1,5 @@
 FROM node:14.17.6 as node
-FROM ruby:3.0.2
+FROM ruby:3.1.2
 COPY --from=node /opt/yarn-* /opt/yarn
 COPY --from=node /usr/local/bin/node /usr/local/bin/
 COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
@@ -21,7 +21,7 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
-RUN bundle install
+RUN bundle config set force_ruby_platform true && bundle install
 
 COPY package.json yarn.lock ./
 RUN yarn install
