@@ -21,7 +21,7 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
-RUN bundle install
+RUN bundle config set force_ruby_platform true && bundle install
 
 COPY package.json yarn.lock ./
 RUN yarn install
