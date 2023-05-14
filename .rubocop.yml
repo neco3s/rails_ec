@@ -1,6 +1,7 @@
 require:
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-hc
 Style/Documentation:
   Enabled: false
 Metrics/MethodLength:
