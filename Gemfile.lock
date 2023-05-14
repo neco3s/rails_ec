@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ihatov08/rubocop-hc.git
+  revision: c0abdab9c206dfa97b5780d0db00f0ab513fdb2c
+  specs:
+    rubocop-hc (0.1.0)
+      rubocop
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -282,6 +289,7 @@ DEPENDENCIES
   rails (~> 7.0.0)
   rspec-rails
   rubocop
+  rubocop-hc!
   rubocop-rails
   rubocop-rspec
   selenium-webdriver
