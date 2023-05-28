@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 20_230_528_082_935) do
     t.date 'expiration', null: false, comment: '有効期限'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.index ['email'], name: 'index_purchases_on_email', unique: true
+    t.index ['email'], name: 'index_purchases_on_email'
   end
 
   add_foreign_key 'purchase_detail_associations', 'purchase_details'

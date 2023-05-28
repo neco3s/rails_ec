@@ -23,8 +23,8 @@ class Transaction < ActiveRecord::Migration[7.0]
       # 外部キー制約で各テーブル間の関連性を明らかにし、データの更新・削除時に整合性を保つ
       t.foreign_key :promo_codes unless foreign_key_exists?(:purchases, :promo_codes)
 
-      # インデックス作成(default)と一意性制約=>シーケンシャルスキャンを防ぐ
-      t.index(:email, unique: true)
+      # インデックス作成(default)
+      t.index(:email, unique: false)
     end
 
     create_table :purchase_details do |t| # 購入明細テーブル
