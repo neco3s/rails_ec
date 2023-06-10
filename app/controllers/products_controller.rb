@@ -4,5 +4,8 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+
+    @products = Product.order(created_at: 'DESC')
   end
 end
