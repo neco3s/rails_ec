@@ -8,6 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# rubocop:disable Layout/LineLength
 5.times do |i|
   product = Product.create(name: "Shop item template-#{i - 1}", code: "SKU: BST-#{i - 1}",
                            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?', price: 4000)
@@ -16,3 +17,4 @@
                        content_type: 'image/png')
   product.save
 end
+# rubocop:enable Layout/LineLength

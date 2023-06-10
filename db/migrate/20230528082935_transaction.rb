@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Transaction < ActiveRecord::Migration[7.0]
+  # rubocop:disable Metrics/AbcSize
   def change
     # トランザクションテーブル(イベントエンティティ)
     create_table :purchases do |t| # 購入テーブル
@@ -58,4 +59,5 @@ class Transaction < ActiveRecord::Migration[7.0]
       t.index(:purchase_detail_id, unique: true) # 企業->product_id->puchase_detail_id(自社商品)->puchase_id->(他社商品)
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end
