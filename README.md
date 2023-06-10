@@ -52,3 +52,40 @@ erbのフォーマッターです。
 ```
 docker compose run --rm web bin/htmlbeautifier
 ```
+
+## modelやrouteに注釈(コメント)をつける
+
+schema情報をモデルにコメント
+
+```
+bundle exec annotate --models
+```
+
+~ルーティング情報をroutes.rbにコメント~ gem内部で使用されているrake routesがdeprecated(廃止された)だから代わりにrails routesを使って:poop:手動でroutes.rbにコピペする
+
+```
+bundle exec annotate --routes
+
+rails routes --expanded | grep -E 'products|Route'
+
+:poop: 手動でroutes.rbにコピペ
+```
+## db関連コマンド
+
+データベースを削除し、新しいデータベースを作成し直してから、マイグレーションを実行します。その後、シードデータがあれば再度読み込まれます
+
+```
+rails db:reset
+```
+
+ActiveRecordを通して対話的にdbのrecordを確認する方法
+```
+rails c
+irb(main) > Model.all
+```
+
+検証終了時にデータベースに関する変更をロールバックする方法
+
+```
+rails c -sandbox(s)
+```
