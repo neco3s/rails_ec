@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# == Route Map
+# --[ Route 1 ]--------------------------------------------------------------------------------------------------------------------------------------------------
+# Prefix            | products
+# URI               | /products(.:format)
+# Controller#Action | products#index
+# --[ Route 2 ]--------------------------------------------------------------------------------------------------------------------------------------------------
+# URI               | /products/:id(.:format)
+# Controller#Action | products#show
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-  root 'tasks#index'
+Rails.application.routes.draw do
+  resources :products, only: %i[index show]
 end
