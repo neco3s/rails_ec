@@ -22,7 +22,7 @@ Rails.application.configure do
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   config.require_master_key = true
 
-  host = 'sheltered-shelf-08252.herokuapp.com'
+  host = 'damp-anchorage-33119.herokuapp.com'
   Rails.application.routes.default_url_options[:host] = host
 
   # Disable serving static files from the `/public` folder by default since
