@@ -3,7 +3,7 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <% @image = @product.image.attached? ? url_for(@product.image.attachment) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"  %>
+      <% @image = @product.image.attached? ? rails_storage_proxy_url(@product.image.attachment) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"  %>
       <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src=<%= @image %> alt="..." /></div>
       <div class="col-md-6">
         <div class="small mb-1"><%= @product.code %></div>
@@ -30,7 +30,7 @@
     <h2 class="fw-bolder mb-4">Related products</h2>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
       <% @products.each do |product| %>
-        <% @related_product_image = product.image.attached? ? url_for(product.image.attachment) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"  %>
+        <% @related_product_image = product.image.attached? ? rails_storage_proxy_url(product.image.attachment) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"  %>
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
