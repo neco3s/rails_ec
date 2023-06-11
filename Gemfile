@@ -19,6 +19,8 @@ gem 'puma', '~> 5.0'
 
 gem 'nokogiri'
 
+gem 'aws-sdk-s3', '~> 1.2', require: false
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
 
