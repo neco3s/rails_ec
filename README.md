@@ -53,6 +53,7 @@ erbのフォーマッターです。
 docker compose run --rm web bin/htmlbeautifier
 ```
 
+
 ## modelやrouteに注釈(コメント)をつける
 
 schema情報をモデルにコメント
@@ -89,3 +90,4 @@ irb(main) > Model.all
 ```
 rails c -sandbox(s)
 ```
+## 本番公開URL
