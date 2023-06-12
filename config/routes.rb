@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  resources :tasks
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# rubocop:disable Layout/LineLength
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-  root 'tasks#index'
+# == Route Map
+# --[ Route 1 ]--------------------------------------------------------------------------------------------------------------------------------------------------
+# Prefix            | products
+# URI               | /products(.:format)
+# Controller#Action | products#index
+# --[ Route 2 ]--------------------------------------------------------------------------------------------------------------------------------------------------
+# URI               | /products/:id(.:format)
+# Controller#Action | products#show
+
+# rubocop:enable Layout/LineLength
+Rails.application.routes.draw do
+  root to: 'products#index'
+  resources :products, only: %i[index show]
 end

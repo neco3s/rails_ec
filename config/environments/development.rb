@@ -2,6 +2,8 @@
 
 require 'active_support/core_ext/integer/time'
 
+# rubocop:disable Metrics/BlockLength
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -18,6 +20,9 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+
+  host = 'localhost:3000'
+  Rails.application.routes.default_url_options[:host] = host
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -71,3 +76,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.web_console.permissions = '0.0.0.0/0' # Local is allowed by default, but explicitly stated for clarity.
 end
+
+# rubocop:enable Metrics/BlockLength
