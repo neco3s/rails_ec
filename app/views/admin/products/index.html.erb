@@ -1,0 +1,55 @@
+<!-- 🎨Navigation rendered at application.html.erb-->
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">管理者商品一覧画面</h1>
+      <p class="lead fw-normal text-white-50 mb-0">管理者として閲覧中</p>
+    </div>
+  </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <% @products.each do |product| %>
+        <div class="col mb-5">
+          <%= link_to product_path(product),class: 'text-decoration-none text-dark' do %>
+            <div class="card h-100">
+              <!-- Sale badge-->
+              <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">セール品</div>
+              <!-- Product image-->
+              <%=  image_tag rails_storage_proxy_url(product.image),class: "card-img-top" if product.image.attached? %>
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder"><%= product.name %></h5>
+                  <!-- Product reviews-->
+                  <%# <div class="d-flex justify-content-center small text-warning mb-2">
+                                  <div class="bi-star-fill"></div>
+                                  <div class="bi-star-fill"></div>
+                                  <div class="bi-star-fill"></div>
+                                  <div class="bi-star-fill"></div>
+                                  <div class="bi-star-fill"></div>
+                              </div> %>
+                  <!-- Product price-->
+                  <span class="text-muted text-decoration-line-through">¥<%= product.price.to_i %></span>
+                  ¥<%= (product.price * 0.8).to_i %>
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><%= link_to("編集",admin_product_path(product.id),method: :patch, class: 'btn btn-outline-dark mt-auto bg-green-200') %></div>
+              </div>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><%= link_to("削除",admin_product_path(product.id),data: { turbo_method: :delete }, class: 'btn btn-outline-dark mt-auto bg-red-500') %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- 🎨Footer rendered at application.html.erb-->
