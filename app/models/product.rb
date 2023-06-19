@@ -11,6 +11,7 @@
 #  price       :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  quantity    :integer          not null
 #
 class Product < ApplicationRecord
   has_one_attached :image
