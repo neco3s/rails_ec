@@ -29,5 +29,7 @@ module Myapp
       g.factory_bot false
     end
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
+
+    config.active_storage.variant_processor = :mini_magick
   end
 end

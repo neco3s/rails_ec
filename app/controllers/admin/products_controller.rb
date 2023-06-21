@@ -11,19 +11,19 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-
+    redirect_to admin_products_path if Product.create(product_params)
   end
 
   def edit
-
+    @product = Product.find(params[:id])
   end
 
   def update
-
+    redirect_to admin_products_path if Product.find(params[:id]).update(product_params)
   end
 
   def destroy
-
+    redirect_to admin_products_path if Product.find(params[:id]).destroy
   end
 
   private
@@ -34,5 +34,9 @@ class Admin::ProductsController < ApplicationController
       name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASS']
       flash.now[:notice] = "管理者としてログイン中です🔐" if name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASS']
     end
+  end
+
+  def product_params
+    params.require(:product).permit(:image, :code, :name, :price, :description, :quantity)
   end
 end
