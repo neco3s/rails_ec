@@ -3,33 +3,32 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
-    <%= form_with model: @product,url: admin_product_url(@product), html: { class: "row" }, local: true do |form| %>
-      <div class="col-md-6" data-controller="image-preview">
-        <%= form.file_field :image, class: "form-control-file photo_upload", data: {target: "image-preview.input", action: "image-preview#readURL" } %>
-        <%= image_tag("preview.png",  :width => "350px", :hight => "300px", data: {target: "image-preview.output" }) %>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= form.text_field :code, class: "form-control", placeholder: "商品コードを入力..." %>
+      <%= form_with model: @product,url: admin_product_url(@product), html: { class: "row" }, local: true do |form| %>
+        <div class="col-md-6" data-controller="image-preview">
+          <%= form.file_field :image, class: "form-control-file photo_upload", data: {target: "image-preview.input", action: "image-preview#readURL" } %>
+          <%= image_tag("preview.png",  :width => "350px", :hight => "300px", data: {target: "image-preview.output" }) %>
         </div>
-        <h1 class="display-5 fw-bolder">
-          <%= form.text_field :name, class: "form-control", placeholder: "商品名を入力..." %>
-        </h1>
-        <div class="form-group">
-          <span>
-            <%= form.number_field :price, in: 1..100000, step: 1, class: "form-control", placeholder: "価格を入力..." %>
-          </span>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.text_field :code, class: "form-control", placeholder: "商品コードを入力..." %>
+          </div>
+          <h1 class="display-5 fw-bolder">
+            <%= form.text_field :name, class: "form-control", placeholder: "商品名を入力..." %>
+          </h1>
+          <div class="form-group">
+            <span>
+              <%= form.number_field :price, in: 1..100000, step: 1, class: "form-control", placeholder: "価格を入力..." %>
+            </span>
+          </div>
+          <div class="form-group">
+            <%= form.text_area :description, class: "form-control", rows: 5, placeholder: "商品説明を入力..." %>
+          </div>
+          <div class="d-flex">
+            <%= form.number_field :quantity, in: 0..100, step: 1, class: "form-control me-3", placeholder: "在庫数を入力..." %>
+            <%= form.submit "商品を更新する", class: "btn btn-outline-dark flex-shrink-0" %>
+          </div>
         </div>
-        <div class="form-group">
-          <%= form.text_area :description, class: "form-control", rows: 5, placeholder: "商品説明を入力..." %>
-        </div>
-        <div class="d-flex">
-          <%= form.number_field :quantity, in: 0..100, step: 1, class: "form-control me-3", placeholder: "在庫数を入力..." %>
-          <%= form.submit "商品を更新する", class: "btn btn-outline-dark flex-shrink-0" %>
-        </div>
-      </div>
-  <% end %>
-
+      <% end %>
     </div>
   </div>
 </section>
