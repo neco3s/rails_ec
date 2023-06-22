@@ -20,11 +20,6 @@
           <li class="nav-item"><%= link_to("商品登録",new_admin_product_path, class: 'text-decoration-none text-dark nav-link') %></li>
         </ul>
       <% end %>
-      <% flash.each do |key, value| %>
-        <li class="d-flex flash <%= key %> pulse ml-4">
-          <%= value %>
-        </li>
-      <% end %>
     </div>
   </div>
 </nav>
