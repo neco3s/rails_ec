@@ -3,6 +3,7 @@
 module Admin
   class ProductsController < ApplicationController
     before_action :authenticate
+    before_action :set_product, only: %i[ edit update destroy ]
 
     def index
       @products = Product.all
@@ -13,19 +14,32 @@ module Admin
     end
 
     def create
-      redirect_to admin_products_path if Product.create(product_params)
+      @product = Product.new(product_params)
+
+      if @product.save
+        redirect_to admin_products_url, success: '商品を登録しました', status: :created 
+      else
+        render :new, status: :unprocessable_entity
+      end 
     end
 
     def edit
-      @product = Product.find(params[:id])
     end
 
     def update
-      redirect_to admin_products_path if Product.find(params[:id]).update(product_params)
+      if @product.update(product_params)
+        redirect_to admin_products_url, success: '商品を更新しました', status: :see_other
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
 
     def destroy
-      redirect_to admin_products_path if Product.find(params[:id]).destroy
+      if @product.destroy
+        redirect_to admin_products_url, success: '商品を削除しました', status: :see_other
+      else
+        redirect_to admin_products_url, danger: '商品の削除に失敗しました', status: :internal_server_error
+      end
     end
 
     private
@@ -33,8 +47,11 @@ module Admin
     def authenticate
       authenticate_or_request_with_http_basic do |name, password|
         name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASS']
-        flash.now[:notice] = '管理者としてログイン中です🔐' if name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASS']
       end
+    end
+
+    def set_product
+      @product = Product.find(params[:id])
     end
 
     def product_params
