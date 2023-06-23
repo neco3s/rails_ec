@@ -15,6 +15,8 @@
 #
 class Product < ApplicationRecord
   validates :name, :code, :description, :price, :quantity, presence: true # 空でないことを想定
+  # TODO: ja.ymlが正常に動作したら以下の記述をコメントアウトを解除する
+
   # validates :code, uniqueness: true # 重複しないJANコードを想定
   # validates :name, length: { maximum: 25 } # 25文字以内の商品名を想定
   # validates :code, length: { maximum: 13 } # 13桁のJANコードを想定
