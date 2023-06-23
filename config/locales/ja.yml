@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      product:
+        name: "商品名"
+        code: "商品コード"
+        description: "商品説明"
+        price: "価格"
+        quantity: "在庫数"
+
+        #なぜかattributesを含んだエラーメッセージが生成されない
+
+      
