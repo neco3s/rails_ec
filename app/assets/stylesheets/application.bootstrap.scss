@@ -1,6 +1,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+.invalid-feedback {
+  display: block;
+}
+
 .notice {
   color: green;
   font-weight: bold;
