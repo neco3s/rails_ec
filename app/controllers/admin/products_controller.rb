@@ -3,7 +3,7 @@
 module Admin
   class ProductsController < ApplicationController
     before_action :authenticate
-    before_action :set_product, only: %i[ edit update destroy ]
+    before_action :set_product, only: %i[edit update destroy]
 
     def index
       @products = Product.all
@@ -17,14 +17,13 @@ module Admin
       @product = Product.new(product_params)
 
       if @product.save
-        redirect_to admin_products_url, success: '商品を登録しました', status: :created 
+        redirect_to admin_products_url, success: '商品を登録しました', status: :created
       else
         render :new, status: :unprocessable_entity
-      end 
+      end
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @product.update(product_params)

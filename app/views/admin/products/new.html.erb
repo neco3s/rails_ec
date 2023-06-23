@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group mt-4">
-            <%= form.label :code, "商品コード", class: "form-label" %> 
+            <%= form.label :code, "商品コード", class: "form-label" %>
             <%= form.text_field :code, class: "form-control", placeholder: "商品コードを入力..." %>
             <% if @product.errors.has_key?(:code) %>
               <div class="invalid-feedback">
