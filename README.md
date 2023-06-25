@@ -34,7 +34,15 @@ http://localhost:3000
 - Taskのscaffoldが含まれていますが、CIの動作確認用です。
 適宜削除いただければと思います。（そのままでも問題ないです）
 
-## rubocop
+## 🧪rspec
+
+※デグレをふせぐために、rspecがすべて通ってからレビュー依頼を出してください。
+
+```
+docker compose run --rm web bundle exec rspec
+```
+
+## 🤖rubocop
 
 rubocopがすべて通ってからレビュー依頼を出してください。
 
@@ -44,7 +52,7 @@ auto correct
 docker compose run --rm web bundle exec rubocop -A
 ```
 
-## htmlbeautifier
+## ✨htmlbeautifier
 
 erbのフォーマッターです。
 フォーマッターを通してからレビュー依頼を出してください。
