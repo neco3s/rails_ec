@@ -17,7 +17,9 @@
           <%= link_to product_path(product),class: 'text-decoration-none text-dark' do %>
             <div class="card h-100">
               <!-- Sale badge-->
-              <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">セール品</div>
+              <% if product.discount > 0 %>
+                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">セール品</div>
+              <% end %>
               <!-- Product image-->
               <%=  image_tag rails_storage_proxy_url(product.image),class: "card-img-top" if product.image.attached? %>
               <!-- Product details-->
