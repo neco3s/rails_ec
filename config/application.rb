@@ -8,6 +8,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# rubocop:disable Rails/FilePath
 module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -38,3 +39,4 @@ module Myapp
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end
+# rubocop:enable Rails/FilePath
