@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_005949) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 0, null: false, comment: "在庫数"
+    t.index ["code"], name: "index_products_on_code", unique: true
     t.index ["id"], name: "index_products_on_id", unique: true
   end
 
