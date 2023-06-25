@@ -54,7 +54,16 @@
                 <%= @product.errors[:quantity].join(", ") %>
               </div>
             <% end %>
-            <%= form.submit "商品を登録する", class: "btn btn-outline-dark flex-shrink-0 mt-5" %>
+          </div>
+          <div class="form-group mt-4">
+            <%= form.label :discount, "割引率(20 = 20%割引", class: "form-label" %>
+            <%= form.number_field :discount, in: 0..100, step: 1, class: "form-control me-3", placeholder: "割引率を入力..." %>
+            <% if @product.errors.has_key?(:discount) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:discount].join(", ") %>
+              </div>
+            <% end %>
+            <%= form.submit "商品を更新する", class: "btn btn-outline-dark flex-shrink-0 mt-5" %>
           </div>
         </div>
       <% end %>

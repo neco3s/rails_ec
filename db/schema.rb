@@ -45,8 +45,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_005949) do
   create_table "products", force: :cascade do |t|
     t.string "name", null: false, comment: "商品名"
     t.string "code", null: false, comment: "商品コード"
-    t.text "description", null: false, comment: "商品説明"
-    t.integer "price", null: false, comment: "価格"
+    t.text "description", default: "※説明未登録...", null: false, comment: "商品説明"
+    t.integer "price", default: 100, null: false, comment: "価格"
+    t.integer "discount", default: 0, null: false, comment: "割引率"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 0, null: false, comment: "在庫数"

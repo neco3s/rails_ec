@@ -10,8 +10,19 @@
         <div class="small mb-1"><%= @product.code %></div>
         <h1 class="display-5 fw-bolder"><%= @product.name %></h1>
         <div class="fs-5 mb-5">
-          <span class="text-decoration-line-through"><%= @product.price.to_i %></span>
-          <span>¥<%= (@product.price * 0.8).to_i %></span>
+          <% if @product.discount > 0 %>
+            <span class="text-decoration-line-through"><%= @product.price.to_i %></span>
+            <span class="text-danger" >¥<%= (@product.price * ( (100 - @product.discount) / 100.0 )).to_i %></span>
+          <% else %>
+            <span>¥<%= @product.price.to_i %></span>
+          <% end %>
+        </div>
+        <div class="fs-5 mb-5">
+          <% if @product.quantity == 0 %>
+            <span class="text-danger">在庫数: <%= @product.quantity.to_i %></span>
+          <% else %>
+            <span>在庫数: <%= @product.quantity.to_i %></span>
+          <% end %>
         </div>
         <p class="lead"><%= @product.description%></p>
         <div class="d-flex">
@@ -41,7 +52,11 @@
                 <!-- Product name-->
                 <h5 class="fw-bolder"><%= product.name %></h5>
                 <!-- Product price-->
-                ¥<%= (product.price * 0.8).to_i %>
+                <% if product.discount > 0 %>
+                  <span class="text-danger" >¥<%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
+                <% else %>
+                  <span>¥<%= product.price.to_i %></span>
+                <% end %>
               </div>
             </div>
             <!-- Product actions-->

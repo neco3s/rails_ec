@@ -11,6 +11,7 @@ ja:
           description: 商品説明
           price: 価格
           quantity: 在庫数
+          discount: 割引率
   # 全てのmodelで共通して使用するattributesを定義
   attributes:
     created_at: 作成日
