@@ -13,6 +13,7 @@ class InitSchema < ActiveRecord::Migration[7.0]
 
       # インデックス作成(default)と一意性制約=>シーケンシャルスキャンを防ぐ
       t.index(:id, unique: true)
+      t.index(:code, unique: true)
     end
   end
 end
