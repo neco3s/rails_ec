@@ -20,7 +20,7 @@
                             discount: temp_discount)
   product.image.attach(io: File.open("./app/assets/images/image_#{i}.jpg"),
                        filename: "image_#{i}.jpg",
-                       content_type: 'image/png') #
+                       content_type: 'image/png')
   product.save
 end
 # rubocop:enable Layout/LineLength

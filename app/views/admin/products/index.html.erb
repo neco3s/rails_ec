@@ -36,7 +36,7 @@
                   <!-- Product price-->
                   <% if product.discount > 0 %>
                     <span class="text-decoration-line-through"><%= product.price.to_i %></span>
-                    <span class="text-danger" >¥<%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
+                    <span class="text-danger" >¥ <%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
                   <% else %>
                     <span>¥<%= product.price.to_i %></span>
                   <% end %>
