@@ -24,7 +24,7 @@ RSpec.describe Product, type: :model do
   end
 
   it 'is invalid without a name' do
-    # FactoryBot.build(:product, name: nil)とすることで、nameがnilのproductを作成することができる(特定のフィールドをオーバーライドできる、他のフィールドはFactoryBotの定義に従う)
+    # FactoryBot.build(:product, name: nil)とする(特定のフィールドをオーバーライドできる、他のフィールドはFactoryBotの定義に従う)
     expect(FactoryBot.build(:product, name: nil)).to be_invalid
   end
 
@@ -80,5 +80,4 @@ RSpec.describe Product, type: :model do
   it 'is invalid with a discount that is more than 100' do
     expect(FactoryBot.build(:product, discount: 101)).to be_invalid
   end
-
 end
