@@ -104,4 +104,4 @@ rails c -sandbox(s)
 ```
 ## 本番公開URL
 
-<https://damp-anchorage-33119.herokuapp.com/>
+<https://lit-ridge-54246-f28a7a68ae97.herokuapp.com/>
