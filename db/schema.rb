@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_11_055649) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_005949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,10 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_055649) do
   create_table "products", force: :cascade do |t|
     t.string "name", null: false, comment: "商品名"
     t.string "code", null: false, comment: "商品コード"
-    t.text "description", null: false, comment: "商品説明"
-    t.integer "price", null: false, comment: "価格"
+    t.text "description", default: "※説明未登録...", null: false, comment: "商品説明"
+    t.integer "price", default: 100, null: false, comment: "価格"
+    t.integer "discount", default: 0, null: false, comment: "割引率"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity", default: 0, null: false, comment: "在庫数"
+    t.index ["code"], name: "index_products_on_code", unique: true
     t.index ["id"], name: "index_products_on_id", unique: true
   end
 

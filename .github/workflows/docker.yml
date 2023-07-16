@@ -19,3 +19,17 @@ jobs:
         docker-compose run --rm web bin/setup
         docker-compose run --rm web bin/htmlbeautifier
         git diff --exit-code
+  run-rspec:
+    name: Run rspec
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout pushed commit
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - name: run rspec on docker-compose
+      run: |
+        docker-compose build
+        docker-compose run --rm web bin/setup
+        docker-compose run --rm web bundle exec rspec
+        git diff --exit-code

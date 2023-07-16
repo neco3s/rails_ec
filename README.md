@@ -34,7 +34,17 @@ http://localhost:3000
 - Taskのscaffoldが含まれていますが、CIの動作確認用です。
 適宜削除いただければと思います。（そのままでも問題ないです）
 
-## rubocop
+## 🧪rspec
+
+※デグレをふせぐために、rspecがすべて通ってからレビュー依頼を出してください。
+※テストは欠陥があることは示せるが、欠陥がないことは示せないので、テストが通っているからといって安心しないでください。
+[ソフトウェアテスト入門](https://speakerdeck.com/suwash/2022-08-30-software-testing?slide%253D43)
+
+```
+docker compose run --rm web bundle exec rspec
+```
+
+## 🤖rubocop
 
 rubocopがすべて通ってからレビュー依頼を出してください。
 
@@ -44,7 +54,7 @@ auto correct
 docker compose run --rm web bundle exec rubocop -A
 ```
 
-## htmlbeautifier
+## ✨htmlbeautifier
 
 erbのフォーマッターです。
 フォーマッターを通してからレビュー依頼を出してください。
@@ -52,6 +62,8 @@ erbのフォーマッターです。
 ```
 docker compose run --rm web bin/htmlbeautifier
 ```
+
+# reviewer追加してからレビュー依頼を出してください!!
 
 
 ## modelやrouteに注釈(コメント)をつける
@@ -92,4 +104,4 @@ rails c -sandbox(s)
 ```
 ## 本番公開URL
 
-<https://damp-anchorage-33119.herokuapp.com/>
+<https://lit-ridge-54246-f28a7a68ae97.herokuapp.com/>

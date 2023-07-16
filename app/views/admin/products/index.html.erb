@@ -3,8 +3,8 @@
 <header class="bg-dark py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="text-center text-white">
-      <h1 class="display-4 fw-bolder">無印良品みたいなサイト</h1>
-      <p class="lead fw-normal text-white-50 mb-0">おしゃれなアイテム取り揃えてます</p>
+      <h1 class="display-4 fw-bolder">管理者商品一覧画面</h1>
+      <p class="lead fw-normal text-white-50 mb-0">管理者として閲覧中</p>
     </div>
   </div>
 </header>
@@ -38,7 +38,7 @@
                   <!-- Product price-->
                   <% if product.discount > 0 %>
                     <span class="text-decoration-line-through"><%= product.price.to_i %></span>
-                    <span class="text-danger" >¥<%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
+                    <span class="text-danger" >¥ <%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
                   <% else %>
                     <span>¥<%= product.price.to_i %></span>
                   <% end %>
@@ -46,7 +46,10 @@
               </div>
               <!-- Product actions-->
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">カートに入れる</a></div>
+                <div class="text-center"><%= link_to("編集",edit_admin_product_path(product.id), class: 'btn btn-outline-dark mt-auto bg-green-200') %></div>
+              </div>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><%= link_to("削除",admin_product_path(product.id),data: { turbo_method: :delete }, class: 'btn btn-outline-dark mt-auto bg-red-500') %></div>
               </div>
             </div>
           <% end %>

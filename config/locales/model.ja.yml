@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      product: 商品
+    # model毎に定義したいattributesを記述
+    attributes:
+        product:
+          id: ID
+          name: 商品名
+          code: 商品コード
+          description: 商品説明
+          price: 価格
+          quantity: 在庫数
+          discount: 割引率
+  # 全てのmodelで共通して使用するattributesを定義
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
+    #

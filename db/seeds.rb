@@ -10,8 +10,14 @@
 
 # rubocop:disable Layout/LineLength
 5.times do |i|
-  product = Product.create(name: "アイテム-#{i}", code: "455000223517-#{i}",
-                           description: "#{i}-植物から抽出した精油だけで香りをつけました。ラベンダーとスウィートオレンジを基調にしたゆったりと落ち着く香り。皮脂をおとしすぎないよう、やさしく地肌を洗いあげ、健康な頭皮を保ちます。", price: 4000)
+  temp_quantity = 10 * i
+  temp_discount = 10 * i
+
+  product = Product.create!(name: "アイテム-#{i}", code: "455000223517-#{i}",
+                            description: "#{i}-植物から抽出した精油だけで香りをつけました。ラベンダーとスウィートオレンジを基調にしたゆったりと落ち着く香り。皮脂をおとしすぎないよう、やさしく地肌を洗いあげ、健康な頭皮を保ちます。",
+                            price: 4000,
+                            quantity: temp_quantity,
+                            discount: temp_discount)
   product.image.attach(io: File.open("./app/assets/images/image_#{i}.jpg"),
                        filename: "image_#{i}.jpg",
                        content_type: 'image/png')

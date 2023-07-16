@@ -8,6 +8,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# rubocop:disable Rails/FilePath
 module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -22,12 +23,20 @@ module Myapp
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
       g.test_framework :rspec,
-                       fixtures: false,
+                       #  fixtures: false, #自動的にモデルに対応するファクトリを生成する
                        view_specs: false,
                        helper_specs: false,
                        routing_specs: false
-      g.factory_bot false
+      # g.factory_bot false
     end
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
+
+    config.active_storage.variant_processor = :mini_magick
+
+    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb, yml}')]
+    # config.i18n.default_locale = :ja
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end
+# rubocop:enable Rails/FilePath

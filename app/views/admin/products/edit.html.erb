@@ -1,0 +1,73 @@
+<!-- 🎨Navigation rendered at application.html.erb-->
+<!-- Product section-->
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <%= form_with model: @product,url: admin_product_url(@product), html: { class: "row" }, local: true do |form| %>
+        <div class="col-md-6" data-controller="image-preview">
+          <%= form.label :image, "商品画像", class: "form-label" %>
+          <%= form.file_field :image, class: "form-control-file photo_upload", data: {target: "image-preview.input", action: "image-preview#readURL" } %>
+          <%= image_tag("preview.png",  :width => "350px", :hight => "300px", data: {target: "image-preview.output" }) %>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mt-4">
+            <%= form.label :code, "商品コード", class: "form-label" %>
+            <%= form.text_field :code, class: "form-control", placeholder: "商品コードを入力..." %>
+            <% if @product.errors.has_key?(:code) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:code].join(", ") %>
+              </div>
+            <% end %>
+          </div>
+          <div class="form-group mt-4">
+            <%= form.label :name, "商品名", class: "form-label" %>
+            <%= form.text_field :name, class: "form-control", placeholder: "商品名を入力..." %>
+            <% if @product.errors.has_key?(:name) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:name].join(", ") %>
+              </div>
+            <% end %>
+          </div>
+          <div class="form-group mt-4">
+            <%= form.label :price, "価格", class: "form-label" %>
+            <%= form.number_field :price, in: 1..10000, step: 1, class: "form-control", placeholder: "価格を入力..." %>
+            <% if @product.errors.has_key?(:price) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:price].join(", ") %>
+              </div>
+            <% end %>
+          </div>
+          <div class="form-group mt-4">
+            <%= form.label :description, "商品説明", class: "form-label" %>
+            <%= form.text_area :description, class: "form-control", rows: 5, placeholder: "商品説明を入力..." %>
+            <% if @product.errors.has_key?(:description) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:description].join(", ") %>
+              </div>
+            <% end %>
+          </div>
+          <div class="form-group mt-4">
+            <%= form.label :quantity, "在庫数", class: "form-label" %>
+            <%= form.number_field :quantity, in: 0..100, step: 1, class: "form-control me-3", placeholder: "在庫数を入力..." %>
+            <% if @product.errors.has_key?(:quantity) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:quantity].join(", ") %>
+              </div>
+            <% end %>
+          </div>
+          <div class="form-group mt-4">
+            <%= form.label :discount, "割引率(20 = 20%割引", class: "form-label" %>
+            <%= form.number_field :discount, in: 0..100, step: 1, class: "form-control me-3", placeholder: "割引率を入力..." %>
+            <% if @product.errors.has_key?(:discount) %>
+              <div class="invalid-feedback">
+                <%= @product.errors[:discount].join(", ") %>
+              </div>
+            <% end %>
+            <%= form.submit "商品を更新する", class: "btn btn-outline-dark flex-shrink-0 mt-5" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- 🎨Footer rendered at application.html.erb-->
