@@ -63,7 +63,7 @@ erbのフォーマッターです。
 docker compose run --rm web bin/htmlbeautifier
 ```
 
-# reviewer追加してからレビュー依頼を出してください。
+# reviewer追加してからレビュー依頼を出してください!!
 
 
 ## modelやrouteに注釈(コメント)をつける
