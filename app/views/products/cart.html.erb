@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal" >
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <%= link_to "#", data: {
+          controller: "modals",
+          action: "modals#close"
+        }, class: "btn btn-secondary" do %>
+          <span aria-hidden="true">&times;</span>
+        <% end %>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "お会計", "/checkout", class: "btn btn-primary" %>
+        <%= link_to "閉じる", '#', data: {
+          controller: "modals",
+          action: "modals#close"
+        }, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+  </div>  
+<% end %>

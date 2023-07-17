@@ -1,0 +1,211 @@
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>お会計</h2>
+      <p class="lead">すごくいい商品を選んだね👍</p>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">カートの中身</span>
+          <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">商品1</h6>
+              <small class="text-body-secondary">商品説明</small>
+            </div>
+            <span class="text-body-secondary">¥1200</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">商品2</h6>
+              <small class="text-body-secondary">商品説明</small>
+            </div>
+            <span class="text-body-secondary">¥800</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">商品3</h6>
+              <small class="text-body-secondary">商品説明</small>
+            </div>
+            <span class="text-body-secondary">¥500</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+            <div class="text-success">
+              <h6 class="my-0">クーポン</h6>
+              <small>クーポンコード</small>
+            </div>
+            <span class="text-success">−¥300</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>合計 (円)</span>
+            <strong>¥2500</strong>
+          </li>
+        </ul>
+
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="クーポンコードを">
+            <button type="submit" class="btn btn-secondary">適用</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">請求先住所</h4>
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">姓(家系の名前)</label>
+              <input type="text" class="form-control" id="lastName" placeholder="佐藤" value="" required>
+              <div class="invalid-feedback">
+                上の名前が必要です
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">名(あなたの名前)</label>
+              <input type="text" class="form-control" id="firstName" placeholder="花子" value="" required>
+              <div class="invalid-feedback">
+                下の名前が必要です
+              </div>
+            </div>
+
+
+            <div class="col-12">
+              <label for="username" class="form-label">ニックネーム</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="username" placeholder="ニックネーム" required>
+              <div class="invalid-feedback">
+                  ニックネームが必要です
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">メールアドレス <span class="text-body-secondary">(必須)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="onamaetarou@example.com" required>
+              <div class="invalid-feedback">
+                メールアドレスがないと、あなたに連絡することができません
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">国(例: 日本)</label>
+              <select class="form-select" id="country" required>
+                <option value="日本">日本</option>
+                <option>アメリカ</option>
+              </select>
+              <div class="invalid-feedback">
+                国を選択してください
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">都道府県</label>
+              <select class="form-select" id="state" required>
+                <option value="">選択してください</option>
+                <option>千葉県</option>
+                <option>神奈川県</option>
+              </select>
+              <div class="invalid-feedback">
+                都道府県を選択してください
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">市区町村</label>
+              <input type="text" class="form-control" id="address" placeholder="鎌ヶ谷市" required>
+              <div class="invalid-feedback">
+                市区町村を入力してください
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address2" class="form-label">(丁目 - 番地) <span class="text-body-secondary">(必須)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="例: 3丁目-17番地">
+            </div>
+
+
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">郵便番号</label>
+              <input type="text" class="form-control" id="zip" placeholder="273-0107" required>
+              <div class="invalid-feedback">
+                郵便番号を入力してください
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="same-address">
+            <label class="form-check-label" for="same-address">請求先住所に品物を届ける</label>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">支払い</h4>
+
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">信用カード(クレジットカード)</label>
+            </div>
+            <div class="form-check">
+              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">即講座引き落としカード(デビットカード)</label>
+            </div>
+            <div class="form-check">
+              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="paypal">PayPal</label>
+            </div>
+          </div>
+
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">カードに記載されてる名前</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-body-secondary">フルネーム(性と名)</small>
+              <div class="invalid-feedback">
+                名前が必要です
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">クレジットカード番号</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="4018 2939 0333 2222" required>
+              <div class="invalid-feedback">
+                クレジットカード番号が必要です
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">有効期限</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="27/09" required>
+              <div class="invalid-feedback">
+                有効期限が必要です
+              </div>
+            </div>
+
+            <div class="col-md-9">
+              <label for="cc-cvv" class="form-label">CVV(カードの裏に記載された3文字の番号)</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="041" required>
+              <div class="invalid-feedback">
+                セキュリティコードが必要です
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">お会計する💸</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

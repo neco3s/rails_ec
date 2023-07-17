@@ -10,4 +10,12 @@ class ProductsController < ApplicationController
 
     @products = Product.order(created_at: 'DESC')
   end
+
+  def cart
+
+  end
+
+  def checkout
+    
+  end
 end
