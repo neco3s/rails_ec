@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :products, only: %i[index show]
   get 'cart', to: 'products#cart'
   post 'products/:id/cart', to: 'products#add_cart', as: 'add_cart'
+  delete 'products/:id/cart/:uid', to: 'products#return_to_shelf', as: 'return_to_shelf'
   get 'checkout', to: 'products#checkout'
   
 

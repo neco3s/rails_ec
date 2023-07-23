@@ -40,4 +40,12 @@ class ProductsController < ApplicationController
     end
     redirect_to action: "index"
   end
+
+  def return_to_shelf
+    params[:uid]
+    p 'CartTransaction.find_by(uid: params[:uid]).destroy'
+    p CartTransaction.find_by(uid: params[:uid]).destroy
+    cookies.delete(:"products_#{params[:uid]}_cart")
+    redirect_to action: "cart"
+  end
 end
