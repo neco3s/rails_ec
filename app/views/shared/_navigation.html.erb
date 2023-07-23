@@ -11,7 +11,7 @@
           <%= link_to '/cart', class: "btn btn-outline-dark", data:  { turbo_frame: "modal" } do %>
             <i class="bi-cart-fill me-1"></i>
             Cart
-            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            <span class="badge bg-dark text-white ms-1 rounded-pill"><%= cookies.select{|k,v| k.match(/products_[a-f\d]{8}-([a-f\d]{4}-){3}[a-f\d]{12}_cart/)}.length %></span>
           <% end %>
         </form>
       <% elsif request.path_info == '/admin/products' || request.path_info == '/admin/products/new' %>
