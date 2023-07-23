@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_003422) do
   end
 
   create_table "cart_transactions", force: :cascade do |t|
-    t.integer "uid", null: false, comment: "整理券番号"
+    t.string "uid", null: false, comment: "整理券番号"
     t.bigint "product_id", null: false, comment: "商品ID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
