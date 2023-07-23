@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :products, only: %i[index show]
   get 'cart', to: 'products#cart'
+  post 'products/:id/cart', to: 'products#add_cart', as: 'add_cart'
   get 'checkout', to: 'products#checkout'
+  
 
   namespace :admin do
     resources :products, except: :show
