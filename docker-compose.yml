@@ -6,6 +6,7 @@ services:
       - db:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=password
+      - TZ=Asia/Tokyo
   web:
     build: .
     image: rails_template:latest
@@ -14,6 +15,8 @@ services:
       - .:/myapp
       - bundle:/usr/local/bundle
       - node_modules:/myapp/node_modules
+    environment:
+      - TZ=Asia/Tokyo
     ports:
       - "3000:3000"
     depends_on:
