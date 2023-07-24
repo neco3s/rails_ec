@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'securerandom'
-# rubocop:disable Hc/RailsSpecificActionName Layout/LineLength Metrics/MethodLength Metrics/AbcSize
+# rubocop:disable Hc/RailsSpecificActionName, Layout/LineLength, Metrics/MethodLength, Metrics/AbcSize
 class ProductsController < ApplicationController
   def index
     products = Product.all
@@ -99,4 +99,4 @@ class ProductsController < ApplicationController
     redirect_to action: 'cart'
   end
 end
-# rubocop:enable Hc/RailsSpecificActionName Layout/LineLength Metrics/MethodLength Metrics/AbcSize
+# rubocop:enable Hc/RailsSpecificActionName, Layout/LineLength, Metrics/MethodLength, Metrics/AbcSize
