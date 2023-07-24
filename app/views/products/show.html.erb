@@ -18,19 +18,29 @@
           <% end %>
         </div>
         <div class="fs-5 mb-5">
-          <% if @product.quantity == 0 %>
-            <span class="text-danger">在庫数: <%= @product.quantity.to_i %></span>
+          <% if (@product.quantity - @product.product_count_in_cart) == 0 %>
+            棚の商品数:<span class="text-danger"><%= 0 %></span>
           <% else %>
-            <span>在庫数: <%= @product.quantity.to_i %></span>
+            棚の商品数:<span><%= (@product.quantity - @product.product_count_in_cart).to_i %></span>
+          <% end %>
+          -
+          <% if @product.product_count_in_cart > 0 %>
+            カートの中の商品数:<span class="text-warning"><%= @product.product_count_in_cart.to_i %></span>
           <% end %>
         </div>
         <p class="lead"><%= @product.description%></p>
         <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
-            <i class="bi-cart-fill me-1"></i>
-            カートに入れる
-          </button>
+          <%= form_tag add_cart_path(id: @product.id, quantity: params[:quantity] ), method: :post do %>
+            <%= select_tag :quantity, options_for_select(1..(@product.quantity - @product.product_count_in_cart).to_i) %>個
+            <% if (@product.quantity - @product.product_count_in_cart).to_i < 1  %>
+              <span class="text-danger">売り切れ</span>
+            <% else %>
+              <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                <i class="bi-cart-fill me-1"></i>
+                カートに入れる
+              </button>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
