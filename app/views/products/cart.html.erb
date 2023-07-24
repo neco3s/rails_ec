@@ -1,76 +1,76 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="modal" >
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">🛒カートの商品</h5>
-        <%= link_to "#", data: {
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">🛒カートの商品</h5>
+          <%= link_to "#", data: {
           controller: "modals",
           action: "modals#close"
         }, class: "btn btn-secondary" do %>
-          <span aria-hidden="true">&times;</span>
-        <% end %>
-      </div>
-      <div class="modal-body">
-        <% @products.each do |product| %>
-          <div class="card mb-3" style="max-width: 480px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <%=  image_tag rails_storage_proxy_url(product.image),class: "card-img-top h-100" if product.image.attached? %>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title"><%= product.name %></h5>
-                  <% if product.discount > 0 %>
-                    <span class="card-text text-decoration-line-through"><%= product.price.to_i %></span>
-                    <span class="card-text text-danger" >¥<%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
-                  <% else %>
-                    <span class="card-text">¥<%= product.price.to_i %></span>
-                  <% end %>
-                  <div class="flex">
-                    <p class="card-text"><small class="text-muted" id="expire-time">商品棚に戻るまで残り <span id="<%= product.uid %>"></span>⏳</small></p>
-                    <%= link_to("商品棚に戻す",return_to_shelf_path(id: product.id,uid: product.uid),data: { turbo_method: :delete }, class: 'btn btn-outline-dark mt-auto bg-red-500 fs-6 p-1') %>
-                  </div>
-                  <script>
-                    function startCountdown(expire) {
-                      var timer = setInterval(function() {
-                        var now = new Date().getTime();
-                        var remaining = expire - now;
-                        if (remaining <= 0) {
-                          clearInterval(timer);
-                          document.getElementById("<%= product.uid %>").innerHTML = "0:00";
-                        } else {
-                          var minutes = Math.floor(remaining / (1000 * 60));
-                          var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-                          document.getElementById("<%= product.uid %>").innerHTML = minutes + ":" + seconds.toString().padStart(2, "0");
-                        }
-                      }, 1000);
-                    }
+            <span aria-hidden="true">&times;</span>
+          <% end %>
+        </div>
+        <div class="modal-body">
+          <% @products.each do |product| %>
+            <div class="card mb-3" style="max-width: 480px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <%=  image_tag rails_storage_proxy_url(product.image),class: "card-img-top h-100" if product.image.attached? %>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <% if product.discount > 0 %>
+                      <span class="card-text text-decoration-line-through"><%= product.price.to_i %></span>
+                      <span class="card-text text-danger" >¥<%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
+                    <% else %>
+                      <span class="card-text">¥<%= product.price.to_i %></span>
+                    <% end %>
+                    <div class="flex">
+                      <p class="card-text"><small class="text-muted" id="expire-time">商品棚に戻るまで残り <span id="<%= product.uid %>"></span>⏳</small></p>
+                      <%= link_to("商品棚に戻す",return_to_shelf_path(id: product.id,uid: product.uid),data: { turbo_method: :delete }, class: 'btn btn-outline-dark mt-auto bg-red-500 fs-6 p-1') %>
+                    </div>
+                    <script>
+                      function startCountdown(expire) {
+                        var timer = setInterval(function() {
+                          var now = new Date().getTime();
+                          var remaining = expire - now;
+                          if (remaining <= 0) {
+                            clearInterval(timer);
+                            document.getElementById("<%= product.uid %>").innerHTML = "0:00";
+                          } else {
+                            var minutes = Math.floor(remaining / (1000 * 60));
+                            var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                            document.getElementById("<%= product.uid %>").innerHTML = minutes + ":" + seconds.toString().padStart(2, "0");
+                          }
+                        }, 1000);
+                      }
 
-                    var expire = new Date("<%= product.expire %>").getTime();
-                    startCountdown(expire);
-                  </script>
+                      var expire = new Date("<%= product.expire %>").getTime();
+                      startCountdown(expire);
+                    </script>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <div class="row w-100">
-          <div class="col-md-6">
-            <span class="card-text lh-lg">合計金額: ¥<%= @total_price %></span>
-          </div>
-          <div class="col-md-6">
-            <%= link_to "お会計", "/checkout", class: "btn btn-primary" %>
-            <%= link_to "閉じる", '#', data: {
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <div class="row w-100">
+            <div class="col-md-6">
+              <span class="card-text lh-lg">合計金額: ¥<%= @total_price %></span>
+            </div>
+            <div class="col-md-6">
+              <%= link_to "お会計", "/checkout", class: "btn btn-primary" %>
+              <%= link_to "閉じる", '#', data: {
               controller: "modals",
               action: "modals#close"
             }, class: "btn btn-secondary" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>  
 <% end %>
