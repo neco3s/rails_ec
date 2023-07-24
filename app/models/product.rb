@@ -24,7 +24,7 @@ class Product < ApplicationRecord
   validates :quantity, numericality: { greater_than_or_equal_to: 0 } # 0以上の在庫数を想定
   validates :discount, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 } # 割引率は0以上100以下を想定
 
-  attr_accessor :expire, :uid
+  attr_accessor :expire, :uid, :product_count_in_cart
 
   has_one_attached :image
 end
