@@ -46,7 +46,13 @@
               </div>
               <!-- Product actions-->
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><%= link_to("カートに入れる",add_cart_path(product.id),data: { turbo_method: :post },class: 'btn btn-outline-dark mt-auto') %></div>
+                <div class="text-center">
+                <% if product.quantity - product.product_count_in_cart > 0%>
+                  <%= link_to("カートに入れる",add_cart_path(product.id),data: { turbo_method: :post },class: 'btn btn-outline-dark mt-auto') %>
+                <% else %>
+                  <span class="text-danger">売り切れ</span>
+                <% end %>
+                </div>
               </div>
             </div>
           <% end %>
