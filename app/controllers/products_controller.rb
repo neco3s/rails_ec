@@ -4,11 +4,17 @@ require 'securerandom'
 
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    products = Product.all
+    products.each do |product|
+     product.product_count_in_cart = CartTransaction.where(product_id: product.id) ? CartTransaction.where(product_id: product.id).length : 0
+    end
+    @products = products
   end
 
   def show
-    @product = Product.find(params[:id])
+    product = Product.find(params[:id])
+    product.product_count_in_cart = CartTransaction.where(product_id: product.id) ? CartTransaction.where(product_id: product.id).length : 0
+    @product = product
 
     @products = Product.order(created_at: 'DESC')
   end
@@ -31,14 +37,43 @@ class ProductsController < ApplicationController
   end
 
   def add_cart
-    uid = SecureRandom.uuid
-    cartProduct = CartTransaction.create(uid: uid, product_id: params[:id])
-    if cookies[:"products_#{uid}_cart"].present?
-      cookies[:"products_#{uid}_cart"] = {value: [cookies[:"products_#{uid}_cart"],"{\"uid\":\"#{uid}\",\"product_id\":#{params[:id]},\"expires\":\"#{1.hour.from_now}\"}"], expires: Time.zone.parse(cookies[:"products_#{uid}_cart"].match(/expire:([^&}]+)/)[1])}
+    product = Product.find(params[:id])
+    product.product_count_in_cart = CartTransaction.where(product_id: product.id) ? CartTransaction.where(product_id: product.id).length : 0
+
+    if params[:quantity].to_i > 1
+      if (product.quantity - product.product_count_in_cart) < params[:quantity].to_i
+        flash[:danger] = "タッチの差で商品を確保できませんでした"
+        redirect_to action: "show", id: params[:id]
+        return
+      end
+      ActiveRecord::Base.transaction do
+        params[:quantity].to_i.times do
+          uid = SecureRandom.uuid
+          CartTransaction.create(uid: uid, product_id: params[:id])
+          cookies[:"products_#{uid}_cart"] = { value: "{\"uid\":\"#{uid}\",\"product_id\":#{params[:id]},\"expire\":\"#{1.hour.from_now}\"}",expires:1.hour.from_now }
+        end
+      end
     else
-      cookies[:"products_#{uid}_cart"] = { value: "{\"uid\":\"#{uid}\",\"product_id\":#{params[:id]},\"expire\":\"#{1.hour.from_now}\"}",expires:1.hour.from_now }
+      if (product.quantity - product.product_count_in_cart) < 1
+        flash[:danger] = "タッチの差で商品を確保できませんでした"
+        redirect_to action: "show", id: params[:id]
+        return
+      end
+      ActiveRecord::Base.transaction do
+        uid = SecureRandom.uuid
+        CartTransaction.create(uid: uid, product_id: params[:id])
+        cookies[:"products_#{uid}_cart"] = { value: "{\"uid\":\"#{uid}\",\"product_id\":#{params[:id]},\"expire\":\"#{1.hour.from_now}\"}",expires:1.hour.from_now }
+      end
     end
-    redirect_to action: "index"
+
+    if request.referer =~ /products\/\d+/
+      flash[:success] = "カートに商品を追加しました"
+      redirect_to action: "show", id: params[:id]
+    else
+      flash[:success] = "カートに商品を追加しました"
+      redirect_to action: "index"
+    end
+    
   end
 
   def return_to_shelf
