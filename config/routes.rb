@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   post 'products/:id/cart', to: 'products#add_cart', as: 'add_cart'
   delete 'products/:id/cart/:uid', to: 'products#return_to_shelf', as: 'return_to_shelf'
   get 'checkout', to: 'products#checkout'
-  
 
   namespace :admin do
     resources :products, except: :show

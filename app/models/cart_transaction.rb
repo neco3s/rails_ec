@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 class CartTransaction < ApplicationRecord
-  validates :uid, :product_id, presence: true 
+  validates :uid, :product_id, presence: true
 
   belongs_to :product
 end
