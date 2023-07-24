@@ -9,40 +9,35 @@
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">カートの中身</span>
-          <span class="badge bg-primary rounded-pill">3</span>
+          <span class="badge bg-primary rounded-pill"> <%= @products.length %> </span>
         </h4>
         <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">商品1</h6>
-              <small class="text-body-secondary">商品説明</small>
-            </div>
-            <span class="text-body-secondary">¥1200</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">商品2</h6>
-              <small class="text-body-secondary">商品説明</small>
-            </div>
-            <span class="text-body-secondary">¥800</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">商品3</h6>
-              <small class="text-body-secondary">商品説明</small>
-            </div>
-            <span class="text-body-secondary">¥500</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+          <% @products.map do |product| %>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0"><%= product.name %></h6>
+                <small class="text-body-secondary"><%= truncate_string(product.description) %> </small>
+              </div>
+              <span class="text-body-secondary">
+                <% if product.discount > 0 %>
+                  <span class="text-danger" >¥<%= (product.price * ( (100 - product.discount) / 100.0 )).to_i %></span>
+                <% else %>
+                  <span>¥<%= product.price.to_i %></span>
+                <% end %>
+              </span>
+            </li>
+          <% end %>
+          
+          <%# <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
               <h6 class="my-0">クーポン</h6>
               <small>クーポンコード</small>
             </div>
             <span class="text-success">−¥300</span>
-          </li>
+          </li> %>
           <li class="list-group-item d-flex justify-content-between">
             <span>合計 (円)</span>
-            <strong>¥2500</strong>
+            <strong>¥ <%= @total_price %></strong>
           </li>
         </ul>
 

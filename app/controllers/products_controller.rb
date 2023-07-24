@@ -33,7 +33,16 @@ class ProductsController < ApplicationController
   end
 
   def checkout
-    
+    @products = []
+    cookies.select{|k,v| k.match(/products_[a-f\d]{8}-([a-f\d]{4}-){3}[a-f\d]{12}_cart/)}.each do |k,v|
+      object = JSON.parse(v)
+      product_id = object["product_id"]
+      product = Product.find(product_id)
+      product.expire = object["expire"]
+      product.uid = object["uid"]
+      @products << product
+    end
+    @total_price = @products.map{ |product| product.discount > 0 ? (product.price * ( (100 - product.discount) / 100.0 )).to_i : product.price.to_i }.sum
   end
 
   def add_cart
